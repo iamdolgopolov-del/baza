@@ -103,7 +103,7 @@
     <div data-marquee-box="1" style="overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none">
       <div data-marquee="1" style="display:flex;gap:16px;padding-right:16px;width:max-content;will-change:transform">
         <sc-for list="{{ worksLoop }}" as="w" hint-placeholder-count="8">
-          <div role="button" tabindex="0" aria-label="Открыть крупно" onClick="{{ w.open }}" style="position:relative;cursor:zoom-in;flex:0 0 auto;height:clamp(170px,20vw,260px);aspect-ratio:{{ w.ar }};display:flex;align-items:flex-end;padding:10px;border-radius:var(--radius-lg);background:repeating-linear-gradient(135deg, var(--indigo-100) 0 12px, var(--surface-raised) 12px 24px);overflow:hidden">
+          <div role="button" tabindex="0" aria-label="Открыть крупно" onClick="{{ w.open }}" style="position:relative;cursor:zoom-in;flex:0 0 auto;height:clamp(186px,21.85vw,285px);aspect-ratio:{{ w.ar }};display:flex;align-items:flex-end;padding:10px;border-radius:var(--radius-lg);background:repeating-linear-gradient(135deg, var(--indigo-100) 0 12px, var(--surface-raised) 12px 24px);overflow:hidden">
             <sc-if value="{{ w.hasImg }}" hint-placeholder-val="{{ false }}"><img src="{{ w.src }}" alt="Работа ученика" loading="lazy" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></sc-if>
             <sc-if value="{{ w.noImg }}" hint-placeholder-val="{{ true }}"><span style="font-size:12px;line-height:1.25;padding:6px 10px;border-radius:var(--radius-xs);background:rgba(255,255,255,0.9);color:var(--ink-700)">{{ w.label }}</span></sc-if>
           </div>
@@ -211,39 +211,49 @@
 </section>
 
 <!-- ДО / ПОСЛЕ -->
-<section style="padding:clamp(36px,6vw,72px) 0 0">
+<section style="padding:clamp(48px,calc(32px + 4.44vw),96px) 0 0">
   <div style="max-width:1286px;margin:0 auto;padding:0 clamp(16px,4vw,40px)">
-    <div data-reveal="1" style="margin-bottom:24px;display:flex;flex-direction:column;gap:8px">
-      <h2 style="font-size:clamp(28px,3.6vw,46px);line-height:1.08">Как вырастет ваш навык</h2>
-      <p style="font-size:clamp(16px,1.5vw,19px);color:var(--text-secondary)">Работы учеников до и после обучения</p>
+    <div data-reveal="1" style="margin-bottom:clamp(16px,calc(11px + 1.48vw),32px);display:flex;flex-direction:column;gap:clamp(8px,calc(5px + .74vw),16px)">
+      <h2 style="font-size:clamp(28px,calc(21.33px + 1.852vw),48px);line-height:1.12;letter-spacing:-0.01em">Как вырастет ваш навык</h2>
+      <p style="font-size:clamp(16px,calc(14.67px + .37vw),20px);line-height:1.45;color:var(--text-secondary)">Работы учеников до и после обучения, листайте карусель</p>
     </div>
-    <div data-reveal="1" style="background:#fff;border-radius:var(--radius-xl);box-shadow:var(--shadow-sm);padding:clamp(10px,1.6vw,18px);display:flex;flex-direction:column;gap:12px">
-      <div data-carousel="ba" style="display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:var(--radius-lg)">
+    <div data-reveal="1" style="display:flex;flex-direction:column;gap:clamp(4px,calc(1.33px + .74vw),12px)">
+      <div data-carousel="ba" style="display:flex;gap:clamp(12px,calc(8px + 1.11vw),24px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 12px;align-items:stretch">
         <sc-for list="{{ students }}" as="s" hint-placeholder-count="2">
-          <div style="flex:0 0 {{ baSlideW }};scroll-snap-align:start;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(8px,1.2vw,14px)">
-            <div role="button" tabindex="0" aria-label="Открыть крупно" onClick="{{ s.openBefore }}" style="position:relative;cursor:zoom-in;aspect-ratio:{{ baAr }};display:flex;align-items:flex-end;padding:12px;border-radius:var(--radius-lg);background:repeating-linear-gradient(135deg, var(--ink-200) 0 12px, var(--surface-raised) 12px 24px);transition:filter .2s var(--ease-standard)" style-hover="filter:brightness(0.96)">
-              <sc-if value="{{ s.hasBefore }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:0;border-radius:inherit;overflow:hidden;background:var(--ink-900)"><span aria-hidden="true" style="position:absolute;inset:-24px;background-image:{{ s.beforeBg }};background-size:cover;background-position:center;filter:blur(22px) saturate(1.1);opacity:.75"></span><span role="img" aria-label="Работа до курса" style="position:absolute;inset:0;background-image:{{ s.beforeBg }};background-size:contain;background-position:center;background-repeat:no-repeat"></span></span></sc-if>
-              <span style="position:absolute;top:12px;left:12px"><x-import component-from-global-scope="Ds2030DesignSystem_c2b493.Pill" hint-size="50px,30px">До</x-import></span>
-              <sc-if value="{{ s.noBefore }}" hint-placeholder-val="{{ true }}"><span style="font-size:12px;line-height:1.25;padding:6px 10px;border-radius:var(--radius-xs);background:rgba(255,255,255,0.9);color:var(--ink-700)">{{ s.before }}</span></sc-if>
+          <div style="flex:0 0 {{ baSlideW }};scroll-snap-align:start;background:#fff;border-radius:var(--radius-xl);box-shadow:inset 0 0 0 1px var(--ink-200), var(--shadow-sm);padding:clamp(16px,calc(10.67px + 1.48vw),32px);border-radius:clamp(16px,calc(13.33px + .74vw),24px);display:flex;flex-direction:column;gap:clamp(12px,calc(8px + 1.11vw),24px);opacity:{{ s.cardOp }};transition:opacity .4s var(--ease-standard)">
+            <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap">
+              <span style="font-size:clamp(18px,calc(16px + .556vw),24px);font-weight:500;letter-spacing:-0.01em;line-height:1.15">{{ s.name }}</span>
+              <span style="font-size:clamp(14px,calc(13.33px + .185vw),16px);line-height:1.4;color:var(--text-secondary)">{{ s.role }}</span>
             </div>
-            <div role="button" tabindex="0" aria-label="Открыть крупно" onClick="{{ s.openAfter }}" style="position:relative;cursor:zoom-in;aspect-ratio:{{ baAr }};display:flex;align-items:flex-end;padding:12px;border-radius:var(--radius-lg);background:repeating-linear-gradient(135deg, var(--indigo-100) 0 12px, var(--surface-raised) 12px 24px);transition:filter .2s var(--ease-standard)" style-hover="filter:brightness(0.96)">
-              <sc-if value="{{ s.hasAfter }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:0;border-radius:inherit;overflow:hidden;background:var(--ink-900)"><span aria-hidden="true" style="position:absolute;inset:-24px;background-image:{{ s.afterBg }};background-size:cover;background-position:center;filter:blur(22px) saturate(1.1);opacity:.75"></span><span role="img" aria-label="Работа после курса" style="position:absolute;inset:0;background-image:{{ s.afterBg }};background-size:contain;background-position:center;background-repeat:no-repeat"></span></span></sc-if>
-              <span style="position:absolute;top:12px;left:12px"><x-import component-from-global-scope="Ds2030DesignSystem_c2b493.Pill" tone="indigo" hint-size="70px,30px">После</x-import></span>
-              <sc-if value="{{ s.noAfter }}" hint-placeholder-val="{{ true }}"><span style="font-size:12px;line-height:1.25;padding:6px 10px;border-radius:var(--radius-xs);background:rgba(255,255,255,0.9);color:var(--ink-700)">{{ s.after }}</span></sc-if>
+            <div style="display:grid;grid-template-columns:{{ baPairCols }};align-items:center;gap:clamp(8px,calc(5.33px + .74vw),16px)">
+            <figure style="margin:0;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(8px,calc(5.33px + .74vw),16px);min-width:0">
+              <div role="button" tabindex="0" aria-label="Открыть крупно" onClick="{{ s.openBefore }}" style="position:relative;width:100%;cursor:zoom-in;aspect-ratio:{{ baImgAr }};display:flex;align-items:flex-end;padding:12px;border-radius:clamp(12px,calc(9.33px + .74vw),20px);overflow:hidden;background:var(--surface-canvas);transition:filter .2s var(--ease-standard)" style-hover="filter:brightness(0.97)">
+                <sc-if value="{{ s.hasBefore }}" hint-placeholder-val="{{ false }}"><img src="{{ s.beforeSrc }}" alt="Работа до обучения" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain"></sc-if>
+                <sc-if value="{{ s.noBefore }}" hint-placeholder-val="{{ true }}"><span style="position:relative;font-size:12px;line-height:1.25;padding:6px 10px;border-radius:var(--radius-xs);background:rgba(255,255,255,0.9);color:var(--ink-700)">{{ s.before }}</span></sc-if>
+              </div>
+              <figcaption style="position:relative;z-index:1;margin:calc(-0.25 * (1.4em + 2 * clamp(4px,calc(2.67px + .37vw),8px)) - clamp(8px,calc(5.33px + .74vw),16px)) 0 0 clamp(8px,calc(5.33px + .74vw),16px);box-shadow:0 0 0 3px #fff;opacity:{{ s.pillOp }};transition:opacity .3s;font-size:clamp(14px,calc(13.33px + .185vw),16px);font-weight:500;line-height:1.4;white-space:nowrap;padding:clamp(4px,calc(2.67px + .37vw),8px) clamp(12px,calc(10.67px + .37vw),16px);border-radius:var(--radius-pill);background:var(--ink-200);color:var(--ink-900)">До обучения</figcaption>
+            </figure>
+            <span aria-hidden="true" style="justify-self:center;align-self:center;width:clamp(40px,calc(37.33px + .74vw),48px);height:clamp(40px,calc(37.33px + .74vw),48px);border-radius:50%;background:var(--surface-canvas);color:var(--brand);display:flex;align-items:center;justify-content:center;opacity:{{ s.pillOp }};transform:{{ baArrowRot }};transition:opacity .3s"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+            <figure style="margin:0;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(8px,calc(5.33px + .74vw),16px);min-width:0">
+              <div role="button" tabindex="0" aria-label="Открыть крупно" onClick="{{ s.openAfter }}" style="position:relative;width:100%;cursor:zoom-in;aspect-ratio:{{ baImgAr }};display:flex;align-items:flex-end;padding:12px;border-radius:clamp(12px,calc(9.33px + .74vw),20px);overflow:hidden;background:var(--surface-canvas);transition:filter .2s var(--ease-standard)" style-hover="filter:brightness(0.97)">
+                <sc-if value="{{ s.hasAfter }}" hint-placeholder-val="{{ false }}"><img src="{{ s.afterSrc }}" alt="Работа на обучении" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain"></sc-if>
+                <sc-if value="{{ s.noAfter }}" hint-placeholder-val="{{ true }}"><span style="position:relative;font-size:12px;line-height:1.25;padding:6px 10px;border-radius:var(--radius-xs);background:rgba(255,255,255,0.9);color:var(--ink-700)">{{ s.after }}</span></sc-if>
+              </div>
+              <figcaption style="position:relative;z-index:1;margin:calc(-0.25 * (1.4em + 2 * clamp(4px,calc(2.67px + .37vw),8px)) - clamp(8px,calc(5.33px + .74vw),16px)) 0 0 clamp(8px,calc(5.33px + .74vw),16px);box-shadow:0 0 0 3px #fff;opacity:{{ s.pillOp }};transition:opacity .3s;font-size:clamp(14px,calc(13.33px + .185vw),16px);font-weight:500;line-height:1.4;white-space:nowrap;padding:clamp(4px,calc(2.67px + .37vw),8px) clamp(12px,calc(10.67px + .37vw),16px);border-radius:var(--radius-pill);background:var(--brand);color:#fff">На обучении</figcaption>
+            </figure>
             </div>
           </div>
         </sc-for>
       </div>
-      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 12px;padding:0 6px">
-        <span style="font-size:clamp(15px,1.3vw,17px);font-weight:500;min-width:0">{{ baName }}</span>
-        <div style="display:flex;align-items:center;gap:{{ dotGap }};min-width:0;flex-wrap:nowrap">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 12px;padding:0 6px">
+        <div style="display:flex;align-items:center;gap:0;min-width:0;max-width:100%;flex-wrap:nowrap">
           <sc-for list="{{ baDots }}" as="d" hint-placeholder-count="4">
-            <button type="button" aria-label="{{ d.aria }}" onClick="{{ d.go }}" style="width:{{ dotBtnW }};height:44px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0"><span style="display:block;height:8px;width:{{ d.w }};border-radius:8px;background:{{ d.bg }};transition:width .3s var(--ease-standard), background .3s"></span></button>
+            <button type="button" aria-label="{{ d.aria }}" onClick="{{ d.go }}" style="flex:0 1 44px;min-width:32px;height:44px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0"><span style="display:block;height:8px;width:{{ d.w }};border-radius:8px;background:{{ d.bg }};transition:width .3s var(--ease-standard), background .3s"></span></button>
           </sc-for>
-          <div style="display:flex;gap:6px;margin-left:6px">
+          <sc-if value="{{ baShowArrows }}" hint-placeholder-val="{{ true }}"><div style="display:flex;gap:8px;margin-left:8px">
           <button type="button" aria-label="Назад" onClick="{{ baPrev }}" style="width:44px;height:44px;border-radius:50%;border:none;background:var(--surface-canvas);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--brand);transition:background .2s" style-hover="background:var(--indigo-100)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></button>
           <button type="button" aria-label="Вперёд" onClick="{{ baNext }}" style="width:44px;height:44px;border-radius:50%;border:none;background:{{ nextBg }};box-shadow:{{ nextRing }};cursor:pointer;display:flex;align-items:center;justify-content:center;color:{{ nextColor }};transition:background .4s var(--ease-standard), color .4s, box-shadow .4s var(--ease-standard)" style-hover="background:var(--indigo-100);color:var(--brand)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></button>
-          </div>
+          </div></sc-if>
         </div>
       </div>
     </div>
@@ -284,13 +294,18 @@
       </div>
     </div>
     <div data-reveal="1" style="margin-top:clamp(20px,3vw,32px)">
-      <div style="padding:0 clamp(18px,4vw,56px)"><div data-stagger="1" style="display:grid;grid-template-columns:{{ ritaCols }};gap:10px">
+      <div style="padding:0 clamp(16px,4vw,56px)"><div ref="{{ ritaRef }}" onScroll="{{ ritaScroll }}" style="display:{{ ritaDisplay }};grid-template-columns:repeat(4,minmax(0,320px));justify-content:center;gap:clamp(8px,calc(5.33px + .74vw),16px);overflow-x:{{ ritaOverflow }};scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain">
         <sc-for list="{{ ritaGrid }}" as="w" hint-placeholder-count="8">
-          <div role="button" tabindex="0" aria-label="Открыть крупно" onClick="{{ w.open }}" style="position:relative;overflow:hidden;cursor:zoom-in;aspect-ratio:1 / 1;display:flex;align-items:flex-end;padding:10px;border-radius:var(--radius-lg);background:rgba(255,255,255,0.08);transition:filter .2s var(--ease-standard)" style-hover="filter:brightness(1.08)">
-            <span role="img" aria-label="Работа Риты" style="position:absolute;inset:0;background-image:{{ w.bg }};background-size:cover;background-position:center"></span>
+          <div role="button" tabindex="0" aria-label="Открыть крупно" onClick="{{ w.open }}" style="position:relative;flex:0 0 {{ ritaItemW }};max-width:320px;width:100%;overflow:hidden;cursor:zoom-in;aspect-ratio:1 / 1;scroll-snap-align:start;border-radius:clamp(12px,calc(9.33px + .74vw),20px);background:rgba(255,255,255,0.08);transition:filter .2s var(--ease-standard)" style-hover="filter:brightness(1.08)">
+            <img src="{{ w.src }}" alt="Работа Риты" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain">
           </div>
         </sc-for>
       </div></div>
+      <sc-if value="{{ ritaShowDots }}" hint-placeholder-val="{{ false }}"><div style="display:flex;justify-content:center;margin-top:4px">
+        <sc-for list="{{ ritaDots }}" as="d" hint-placeholder-count="8">
+          <button type="button" aria-label="{{ d.aria }}" onClick="{{ d.go }}" style="width:36px;height:44px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0"><span style="display:block;height:8px;width:{{ d.w }};border-radius:8px;background:{{ d.bg }};transition:width .3s var(--ease-standard), background .3s"></span></button>
+        </sc-for>
+      </div></sc-if>
     </div>
   </div>
 </section>
@@ -437,6 +452,8 @@
     <sc-if value="{{ lbHasImg }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:0;border-radius:inherit;overflow:hidden;background:var(--ink-900)"><span aria-hidden="true" style="position:absolute;inset:-30px;background-image:{{ lbBgImg }};background-size:cover;background-position:center;filter:blur(30px);opacity:.6"></span><span role="img" aria-label="Работа ученика" style="position:absolute;inset:0;background-image:{{ lbBgImg }};background-size:contain;background-position:center;background-repeat:no-repeat"></span></span></sc-if>
     <sc-if value="{{ lbNoImg }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;line-height:1.25;padding:8px 12px;border-radius:var(--radius-xs);background:rgba(255,255,255,0.92);color:var(--ink-700)">{{ lbLabel }}</span></sc-if>
   </div>
+  <button type="button" aria-label="Предыдущая работа" onClick="{{ lbPrev }}" style="position:absolute;left:clamp(8px,2vw,24px);top:50%;transform:translateY(-50%);z-index:2;width:48px;height:48px;border-radius:50%;border:none;background:rgba(255,255,255,0.9);color:var(--brand);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-md);transition:background .2s" style-hover="background:#fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></button>
+  <button type="button" aria-label="Следующая работа" onClick="{{ lbNext }}" style="position:absolute;right:clamp(8px,2vw,24px);top:50%;transform:translateY(-50%);z-index:2;width:48px;height:48px;border-radius:50%;border:none;background:rgba(255,255,255,0.9);color:var(--brand);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-md);transition:background .2s" style-hover="background:#fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></button>
 </div>
 
 <!-- Выбор мессенджера -->
@@ -528,7 +545,8 @@ const STUDENT_DATA = [
 const STUDENTS = STUDENT_DATA.map((d, i) => ({
   ...d,
   before: `Ученик ${i + 1}: работа до курса · любой формат`,
-  after: `Ученик ${i + 1}: работа после курса · любой формат`,
+  after: `Ученик ${i + 1}: работа на обучении · любой формат`,
+  role: ['Дима', 'Алексей'].includes(d.name) ? 'ученик' : 'ученица',
   beforeBg: d.beforeSrc ? `url("${d.beforeSrc}")` : 'none',
   afterBg: d.afterSrc ? `url("${d.afterSrc}")` : 'none',
   hasBefore: !!d.beforeSrc, noBefore: !d.beforeSrc,
@@ -581,7 +599,8 @@ class Component extends DCLogic {
     this.onResize = () => {
       const w = window.innerWidth;
       const isMobile = w < 720, isTablet = w < 1100, isWide = w >= 1080;
-      if (isMobile !== this.state.isMobile || isTablet !== this.state.isTablet || isWide !== this.state.isWide) this.setState({ isMobile, isTablet, isWide }, this.onScroll);
+      const baMode = w < 768 ? 'phone' : w < 1024 ? 'tab' : 'desk';
+      if (isMobile !== this.state.isMobile || isTablet !== this.state.isTablet || isWide !== this.state.isWide || baMode !== this.state.baMode) this.setState({ isMobile, isTablet, isWide, baMode }, this.onScroll);
     };
     this.onScroll = () => {
       const scrolled = window.scrollY > 8;
@@ -592,7 +611,7 @@ class Component extends DCLogic {
       const showSticky = this.state.isMobile && !!hero && hero.bottom < 0 && !inView(tar) && !inView(fin) && !ctaVisible;
       if (scrolled !== this.state.scrolled || showSticky !== this.state.showSticky) this.setState({ scrolled, showSticky });
     };
-    this.onKey = e => { if (e.key === 'Escape') { this.closeMsg(); this.closeLb(); } };
+    this.onKey = e => { if (e.key === 'Escape') { this.closeMsg(); this.closeLb(); } else if (e.key === 'ArrowLeft') this.stepLb(-1); else if (e.key === 'ArrowRight') this.stepLb(1); };
     window.addEventListener('resize', this.onResize);
     window.addEventListener('scroll', this.onScroll, { passive: true });
     window.addEventListener('keydown', this.onKey);
@@ -813,6 +832,17 @@ class Component extends DCLogic {
     if (kind === 'work' && this.workDragged && Date.now() - this.workDragged < 300) return;
     this.lockScroll(); this.setState({ lb: { i, kind }, lbOpen: true });
   }
+  stepLb(dir) {
+    const lb = this.state.lb; if (!lb || !this.state.lbOpen) return;
+    if (lb.kind === 'before' || lb.kind === 'after') {
+      const n = STUDENTS.length * 2;
+      const k = ((lb.i * 2 + (lb.kind === 'after' ? 1 : 0) + dir) % n + n) % n;
+      this.setState({ lb: { i: Math.floor(k / 2), kind: k % 2 ? 'after' : 'before' } });
+      return;
+    }
+    const len = { rita: RITA_WORKS, work: WORKS, final: FINAL_WORKS }[lb.kind].length;
+    this.setState({ lb: { i: ((lb.i + dir) % len + len) % len, kind: lb.kind } });
+  }
   closeLb() { if (!this.state.lbOpen) return; this.setState({ lbOpen: false }, () => this.unlockScroll()); }
 
   setupMarquee() {
@@ -919,8 +949,12 @@ class Component extends DCLogic {
       pains: PAINS,
       painsCols: m ? 'minmax(0,1fr)' : s.isTablet ? 'repeat(2,minmax(0,1fr))' : 'repeat(3,minmax(0,1fr))',
       painMinH: m ? '0' : '150px',
-      baSlideW: m ? 'calc(100% - 28px)' : 'calc(100% - 64px)',
-      students: STUDENTS.map((st, i) => ({ ...st, openBefore: () => this.openLb(i, 'before'), openAfter: () => this.openLb(i, 'after') })),
+      baSlideW: s.baMode === 'desk' ? 'calc(100% - clamp(48px,6vw,96px))' : '100%',
+      baPairCols: s.baMode === 'phone' ? 'minmax(0,1fr)' : 'minmax(0,1fr) auto minmax(0,1fr)',
+      baArrowRot: s.baMode === 'phone' ? 'rotate(90deg)' : 'none',
+      baShowArrows: s.baMode !== 'phone',
+      baImgAr: s.baMode === 'phone' ? '4 / 3' : '1 / 1',
+      students: STUDENTS.map((st, i) => ({ ...st, cardOp: i === bi || s.baMode !== 'desk' ? '1' : '0.4', pillOp: i === bi || s.baMode !== 'desk' ? '1' : '0', openBefore: () => this.openLb(i, 'before'), openAfter: () => this.openLb(i, 'after') })),
       nextBg: s.baHint ? 'var(--brand)' : 'var(--surface-canvas)',
       nextColor: s.baHint ? '#fff' : 'var(--brand)',
       nextRing: s.baHint ? '0 0 0 6px var(--indigo-100)' : '0 0 0 0 transparent',
@@ -931,7 +965,9 @@ class Component extends DCLogic {
       lbAr: this.lbAr(),
       lbArK: this.lbAr(),
       openFinal0: () => this.openLb(0, 'final'), openFinal1: () => this.openLb(1, 'final'), openFinal2: () => this.openLb(2, 'final'),
-      lbTag: s.lb && s.lb.kind === 'after' ? 'После' : 'До',
+      lbTag: s.lb && s.lb.kind === 'after' ? 'На обучении' : 'До обучения',
+      lbPrev: e => { e && e.stopPropagation(); this.stepLb(-1); },
+      lbNext: e => { e && e.stopPropagation(); this.stepLb(1); },
       lbTone: s.lb && s.lb.kind === 'after' ? 'indigo' : undefined,
       lbBgImg: this.lbSrc() ? `url("${this.lbSrc()}")` : 'none',
       lbHasImg: !!this.lbSrc(),
@@ -951,7 +987,22 @@ class Component extends DCLogic {
       }),
       fyCols: m ? 'minmax(0,1fr)' : s.isTablet ? 'repeat(2,minmax(0,1fr))' : (FOR_YOU.length === 5 ? 'repeat(6,minmax(0,1fr))' : `repeat(${FOR_YOU.length},minmax(0,1fr))`),
       resCols: m ? 'minmax(0,1fr)' : s.isTablet ? 'repeat(2,minmax(0,1fr))' : 'repeat(4,minmax(0,1fr))',
-      ritaCols: m || s.isTablet ? 'repeat(2,minmax(0,1fr))' : 'repeat(4,minmax(0,1fr))',
+      ritaDisplay: s.baMode === 'desk' ? 'grid' : 'flex',
+      ritaOverflow: s.baMode === 'desk' ? 'visible' : 'auto',
+      ritaItemW: s.baMode === 'phone' ? 'calc(100% / 1.2)' : s.baMode === 'tab' ? 'calc((100% - 2 * clamp(8px,calc(5.33px + .74vw),16px)) / 2.5)' : 'auto',
+      ritaShowDots: s.baMode !== 'desk',
+      ritaRef: this.ritaRef || (this.ritaRef = React.createRef()),
+      ritaScroll: () => {
+        const el = this.ritaRef.current; if (!el || !el.firstElementChild) return;
+        const step = el.firstElementChild.getBoundingClientRect().width + parseFloat(getComputedStyle(el).columnGap || 0);
+        const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4;
+        const i = atEnd ? RITA_WORKS.length - 1 : Math.round(el.scrollLeft / step);
+        if (i !== this.state.ritaIdx) this.setState({ ritaIdx: i });
+      },
+      ritaDots: RITA_WORKS.map((_, i) => ({ aria: `Работа ${i + 1}`, w: i === (s.ritaIdx || 0) ? '22px' : '8px', bg: i === (s.ritaIdx || 0) ? '#fff' : 'rgba(255,255,255,0.35)', go: () => {
+        const el = this.ritaRef.current; if (!el || !el.children[i]) return;
+        el.scrollTo({ left: el.children[i].offsetLeft - el.firstElementChild.offsetLeft, behavior: this.reduce ? 'auto' : 'smooth' });
+      } })),
       ritaGrid: RITA_WORKS.map((w, j) => ({ ...w, open: () => this.openLb(j, 'rita') })),
       dotBtnW: m ? '16px' : '24px', dotGap: m ? '2px' : '6px',
       tOrderBasic: '0', tOrderMid: '0',
