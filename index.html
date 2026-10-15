@@ -28,6 +28,8 @@
     [data-tile]:hover [data-tile-num] { color: rgba(255,255,255,0.16) !important; transform: translateY(-4px); }
     [data-res]:hover [data-res-icon] { background: var(--success) !important; color: #fff !important; transform: scale(1.1) rotate(-6deg); }
     section[id] { scroll-margin-top: 76px; }
+    /* Safari: re-measure messenger pills once the web font replaces the fallback */
+    .fonts-ready [data-msg-pill] > span:last-child { letter-spacing: 0.0001em; }
     [data-fy]:hover [data-fy-num] { background: var(--brand) !important; color: #fff !important; transform: rotate(-6deg); }
     @keyframes ldDraw { from { stroke-dashoffset: 420; } to { stroke-dashoffset: 0; } }
     @keyframes ldFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
@@ -367,8 +369,8 @@
       <p style="font-size:clamp(20px,2vw,26px);font-weight:500;line-height:1.25;letter-spacing:-0.01em;color:var(--ink-900);max-width:30ch">Узнайте стоимость и наличие свободных мест в удобном мессенджере</p>
       <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px">
         <sc-for list="{{ messengers }}" as="m" hint-placeholder-count="4">
-          <a href="{{ m.href }}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;height:52px;padding:0 18px 0 8px;border-radius:999px;background:var(--surface-canvas);color:var(--ink-900);text-decoration:none;font-size:16px;font-weight:500;transition:transform .2s var(--ease-standard), background .2s" style-hover="transform:translateY(-2px);background:var(--indigo-100);color:var(--ink-900)">
-            <span style="flex:0 0 36px;height:36px;border-radius:50%;background:{{ m.color }};color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">{{ m.short }}</span>{{ m.name }}
+          <a data-msg-pill="1" href="{{ m.href }}" target="_blank" rel="noopener" style="flex:0 0 auto;display:flex;align-items:center;gap:10px;height:52px;padding:0 18px 0 8px;border-radius:999px;background:var(--surface-canvas);color:var(--ink-900);text-decoration:none;font-size:16px;font-weight:500;transition:transform .2s var(--ease-standard), background .2s" style-hover="transform:translateY(-2px);background:var(--indigo-100);color:var(--ink-900)">
+            <span style="flex:0 0 36px;height:36px;border-radius:50%;background:{{ m.color }};color:#fff;display:flex;align-items:center;justify-content:center;font-size:{{ m.fs }};font-weight:700;letter-spacing:-0.02em">{{ m.short }}</span><span style="white-space:nowrap">{{ m.name }}</span>
           </a>
         </sc-for>
       </div>
@@ -467,7 +469,7 @@
     <div style="display:flex;flex-direction:column;gap:8px">
       <sc-for list="{{ messengers }}" as="m" hint-placeholder-count="4">
         <a href="{{ m.href }}" target="_blank" rel="noopener" onClick="{{ closeMsg }}" style="display:flex;align-items:center;gap:14px;height:60px;padding:0 16px 0 10px;border-radius:var(--radius-md);background:var(--surface-canvas);color:var(--ink-900);text-decoration:none;font-size:clamp(15px,1.3vw,17px);font-weight:500;transition:background .2s, transform .2s var(--ease-standard)" style-hover="background:var(--indigo-100);transform:translateX(3px);color:var(--ink-900)">
-          <span style="flex:0 0 40px;height:40px;border-radius:12px;background:{{ m.color }};color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">{{ m.short }}</span>
+          <span style="flex:0 0 40px;height:40px;border-radius:12px;background:{{ m.color }};color:#fff;display:flex;align-items:center;justify-content:center;font-size:{{ m.fsL }};font-weight:700;letter-spacing:-0.02em">{{ m.short }}</span>
           <span style="flex:1">{{ m.name }}</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ink-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
         </a>
@@ -934,7 +936,7 @@ class Component extends DCLogic {
       { name: 'WhatsApp', short: 'WA', color: '#25D366', href: p.waLink ?? 'https://wa.me/' },
       { name: 'Max', short: 'MAX', color: '#6C4CF5', href: p.maxLink ?? 'https://max.ru/' },
       { name: 'ВКонтакте', short: 'VK', color: '#0077FF', href: p.vkLink ?? 'https://vk.me/' },
-    ];
+    ].map(x => ({ ...x, fs: x.short.length > 2 ? '10px' : '12px', fsL: x.short.length > 2 ? '11px' : '13px' }));
     const blocks = BLOCKS.map((b, i) => {
       const isOpen = !!s.open[i];
       return { ...b, num: `Блок ${i + 1}`, hasResult: !!b.result, lessons: b.lessons.map((text, j) => ({ n: `${j + 1}.`, text })),
@@ -1050,5 +1052,6 @@ class Component extends DCLogic {
   }
 }
 </script>
+<script>document.fonts && document.fonts.ready.then(function () { document.documentElement.classList.add('fonts-ready'); });</script>
 </body>
 </html>
